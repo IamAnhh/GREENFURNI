@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="logo"><img src="../../assets/Images/logo/logomobile.png" alt="" class="company-logo" routerLink="/home-page"></div>
+    <div class="input">
+        <input type="text" name="search" [(ngModel)]="search" class="input1" placeholder="Tìm kiếm sản phẩm">
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="rightcolumn">
+        <div class="product-show" *ngFor="let p of product | filter: search" [routerLink]="['/product/', p._id]">
+            <img [src]="p.img[0].img1">
+            <p class="name">{{p.name}}</p>
+            <div class="pricecontainer">
+                <p class="price">{{p.price}}.000đ</p>
+                <p class="oldprice">{{p.oldprice}}.000đ</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

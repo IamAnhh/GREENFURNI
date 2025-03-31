@@ -1,0 +1,405 @@
+<app-header></app-header>
+<div class="fullpage mb-5 mt-5">
+    <div class="taikhoan_container">
+        <aside class="sidebar   mb-5">
+            <div class="user-info">
+                <img src="../../assets/Images/logo/avatar.jpg" alt="User profile picture" class="profile-picture" />
+                <h2 class="user-name">{{ account.Name }}</h2>
+            </div>
+            <nav class="profile-nav">
+                <h3 class="nav-title" (click)="toggleAccountInfo()">
+                    Thông tin tài khoản
+                </h3>
+                <ul class="nav-list" [class.hidden]="!isAccountInfoVisible">
+                    <li>
+                        <a (click)="showContent('hoso_content')" class="nav-link">Hồ sơ</a>
+                    </li>
+                    <li>
+                        <a (click)="showContent('diachi_content')" class="nav-link">Địa chỉ</a
+            >
+          </li>
+          <li>
+            <a (click)="showContent('voucher_content')" class="nav-link"
+              >Kho Voucher</a
+            >
+          </li>
+        </ul>
+        <a (click)="showContent('danhgia_content')" class="nav-link manage"
+          >Quản lý đơn hàng</a
+        >
+        <a (click)="logOut()" class="nav-link logout">Đăng xuất</a>
+            </nav>
+        </aside>
+
+        <div id="taikhoan_content">
+            <div *ngIf="selectedbar === 'hoso_content'">
+                <div class="hoso_container">
+                    <h2 class="h2">THÔNG TIN TÀI KHOẢN</h2>
+                    <p class="p mt-3">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+                    <hr />
+
+                    <div class="user-profile">
+                        <div *ngIf="!isEditing">
+                            <div class="hoso_item">
+                                <div class="hoso_item_content">
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Tên đăng nhập:</strong> {{ account.nickname || "Chưa có thông tin" }}
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Họ và tên:</strong> {{ account.Name }}
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Số điện thoại: </strong> {{ account.phonenumber }}
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Email: </strong> {{ account.Mail }}
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Giới tính: </strong> {{ account.gender || "Chưa có thông tin" }}
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Ngày sinh: </strong> {{ account.dob || "Chưa có thông tin" }}
+                                    </div>
+                                    <!-- <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Avatar:</strong> {{ account.avatar || 'Chưa có thông tin'}}
+                                    </div> -->
+                                </div>
+                                <div class="hoso_img">
+                                    <img class="circle_img" alt="" /> <br />
+                                </div>
+                            </div>
+                            <button class="editprofile  btn" (click)="editProfile()">
+                Chỉnh sửa
+              </button>
+                        </div>
+
+                        <div *ngIf="isEditing">
+                            <div class="hoso_item">
+                                <div class="hoso_item_content">
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Tên đăng nhập:</strong>
+                                        <input type="text" [(ngModel)]="editedAccount.nickname" />
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Họ và tên:</strong>
+                                        <input type="text" [(ngModel)]="editedAccount.Name" />
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Số điện thoại: </strong>
+                                        <input type="text" [(ngModel)]="editedAccount.phonenumber" />
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Email: </strong>
+                                        <input type="text" [(ngModel)]="editedAccount.Mail" />
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label p">Giới tính: </strong>
+                                        <label class="hoso_item_label p">
+                      <input
+                        type="radio"
+                        [(ngModel)]="editedAccount.gender"
+                        value="Nam"
+                      />
+                      Nam
+                    </label>
+                                        <label class="hoso_item_label p">
+                      <input
+                        type="radio"
+                        [(ngModel)]="editedAccount.gender"
+                        value="Nữ"
+                      />
+                      Nữ
+                    </label>
+                                    </div>
+                                    <div class="hoso_item_row">
+                                        <strong class="hoso_item_label" typr="date">Ngày sinh:
+                    </strong>
+                                        <input type="date" [(ngModel)]="editedAccount.dob" />
+                                    </div>
+                                </div>
+                                <div class="hoso_img">
+                                    <img class="circle_img" #selectedImage [src]="imageSrc" alt="" />
+                                    <br />
+                                    <button type="file" (click)="selectImage()">Chọn ảnh</button>
+                                    <input type="file" #myfile name="myfile" accept="image/*" (change)="displayImage($event)" />
+                                </div>
+                            </div>
+                            <div class="hoso_item_row">
+                                <button class="savedprofile" (click)="saveProfile()">Lưu</button>
+                                <button class="cancelprofile" (click)="cancelEdit()">Huỷ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedbar === 'diachi_content'">
+                <div class="hoso_container">
+                    <h2 class="h2">ĐỊA CHỈ</h2>
+                    <p class="p mt-3">
+                        Quản lý các địa chỉ giao hàng, cài đặt địa chỉ mặc định
+                    </p>
+                    <hr />
+                    <button type="button" class="addnew  p mt-1" (click)="openPopup()">
+            + THÊM ĐỊA CHỈ MỚI
+          </button>
+                    <div *ngIf="account && account.addresses && account.addresses.length > 0">
+                        <div *ngFor="let address of account.addresses; let i = index" class="diachi_container" [ngClass]="{
+                'default-address': address.isDefault,
+                'edit-mode': address.editMode
+              }">
+                            <div *ngIf="!address.editMode">
+                                <p class="diachi_item_row">
+                                    <strong class="diachi_item_label">Tỉnh/Thành phố:</strong> {{ address.province }}
+                                </p>
+                                <p class="diachi_item_row">
+                                    <strong class="diachi_item_label">Quận/Huyện:</strong> {{ address.district }}
+                                </p>
+                                <p class="diachi_item_row">
+                                    <strong class="diachi_item_label">Chi tiết địa chỉ:</strong> {{ address.addressDetail }}
+                                </p>
+                            </div>
+                            <div *ngIf="address.editMode">
+                                <div>
+                                    <p class="diachi_item_row">
+                                        <strong class="diachi_item_label">Tỉnh/Thành phố:</strong>
+                                        <input type="text" class="diachi_item_input" [(ngModel)]="address.province" placeholder="Nhập tỉnh/thành phố" />
+                                    </p>
+                                    <p class="diachi_item_row">
+                                        <strong class="diachi_item_label">Quận/Huyện:</strong>
+                                        <input type="text" class="diachi_item_input" [(ngModel)]="address.district" placeholder="Nhập quận/huyện" />
+                                    </p>
+
+                                    <p class="diachi_item_row">
+                                        <strong class="diachi_item_label">Chi tiết địa chỉ:</strong>
+                                        <input type="text" class="diachi_item_input" [(ngModel)]="address.addressDetail" placeholder="Nhập chi tiết địa chỉ" />
+                                    </p>
+                                </div>
+                                <div class="diachi_item_button">
+                                    <button class="button" (click)="saveAddress(i)">Lưu</button>
+                                    <button *ngIf="!address.isDefault" class="setdefault" (click)="setDefaultAddress(i)">
+                    Đặt làm mặc định
+                  </button>
+                                    <button class="button" (click)="cancelEditAddress(i)">
+                    Huỷ
+                  </button>
+                                </div>
+                            </div>
+                            <div class="diachi_item_button mt-0">
+                                <button *ngIf="!address.editMode" class="canceladdress" (click)="editAddress(i)">
+                  Chỉnh sửa
+                </button>
+                                <button *ngIf="!address.editMode" class="canceladdress" (click)="deleteAddress(i)">
+                  Xoá
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedbar === 'voucher_content'">
+                <div class="hoso_container">
+                    <h2 class="h2">KHO VOUCHER</h2>
+                    <p class="p mt-3 mb-2">
+                        Quản lý các voucher, mã ưu đãi của bạn tại đây
+                    </p>
+                    <hr />
+                    <div class="voucher_nhapma">
+                        <span class="p">Nhập mã Voucher:</span>
+                        <input type="text" id="voucher" name="voucher" [(ngModel)]="discountCode" />
+                        <button type="button" class="savevoucher" (click)="saveData()">
+              Lưu
+            </button>
+                    </div>
+                    <div class="voucher_container">
+                        <div class="voucher_item" *ngFor="let discount of discounts">
+                            <img src="../../assets/img/voucher.png" alt="" />
+
+                            <span class="minitext" id="hoso_change" routerLink="/cart" routerLinkActive="active">Dùng ngay</span
+              >
+
+              <p class="minitext">
+                {{ discount.code }} <br />
+                {{ discount.description }}
+              </p>
+
+              <ng-container *ngIf="isUsed(discount.code)">
+                <p class="p">Đã hết lượt sử dụng rồi!</p>
+              </ng-container>
+
+              <p class="minitext expired_date">
+                Sắp hết hạn: Còn
+                {{ calculateDaysDifference(discount.expired_date) }} ngày
+                <span class="minitext">Điều kiện</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="savevoucher">
+                <div class="overlay" *ngIf="showOverlay"></div>
+                <div class="popup" *ngIf="showSuccessPopup">
+                    <p class="saved">Đã lưu thông tin thành công!</p>
+                    <button class="closee" (click)="closePopup()">Đóng</button>
+                </div>
+
+            </div>
+
+
+            <div class="popup" *ngIf="addressPopup">
+                <h2 class="h2">Thêm Địa Chỉ Mới</h2>
+                <div class="diachi_popup_container">
+                    <div class="diachi_popup_item">
+                        <label for="newProvince" class="diachi_popup_label">Tỉnh/Thành phố:</label
+            >
+            <input
+              type="text"
+              id="newProvince"
+              class="diachi_popup_input"
+              [(ngModel)]="newAddress.province"
+              placeholder="Nhập tỉnh/thành phố"
+            />
+          </div>
+          <div class="diachi_popup_item">
+            <label for="newDistrict" class="diachi_popup_label"
+              >Quận/Huyện:</label
+            >
+            <input
+              type="text"
+              id="newDistrict"
+              class="diachi_popup_input"
+              [(ngModel)]="newAddress.district"
+              placeholder="Nhập quận/huyện"
+            />
+          </div>
+          <div class="diachi_popup_item_detail">
+            <label for="newAddressDetail" class="diachi_popup_label"
+              >Địa chỉ chi tiết:</label
+            >
+            <textarea
+              id="newAddressDetail"
+              class="diachi_popup_input"
+              [(ngModel)]="newAddress.addressDetail"
+              placeholder="Nhập địa chỉ chi tiết"
+            ></textarea>
+          </div>
+        </div>
+        <div class="diachi_item_button">
+          <button class="addaddress" (click)="addNewAddress()">
+            Thêm địa Chỉ
+          </button>
+          <button class="closeadd" (click)="closePopup()">Đóng</button>
+        </div>
+      </div>
+
+      <div *ngIf="selectedbar === 'danhgia_content'">
+        <div class="hoso_container">
+          <h2 class="h2">QUẢN LÝ ĐƠN HÀNG</h2>
+          <div class="donhang_container">
+            <p
+              class="p"
+              (click)="changeStatusFilter('Tất cả đơn hàng')"
+              [ngClass]="{ selected: selectedStatus === 'Tất cả đơn hàng' }"
+            >
+              Tất cả đơn hàng
+            </p>
+            <p
+              class="p"
+              (click)="changeStatusFilter('Chờ xử lí')"
+              [ngClass]="{ selected: selectedStatus === 'Chờ xử lí' }"
+            >
+              Chờ xử lí
+            </p>
+
+            <p
+              class="p"
+              (click)="changeStatusFilter('Đang giao')"
+              [ngClass]="{ selected: selectedStatus === 'Đang giao' }"
+            >
+              Đang giao
+            </p>
+            <p
+              class="p"
+              (click)="changeStatusFilter('Đã giao')"
+              [ngClass]="{ selected: selectedStatus === 'Đã giao' }"
+            >
+              Đã giao
+            </p>
+            <p
+              class="p"
+              (click)="changeStatusFilter('Đã hủy')"
+              [ngClass]="{ selected: selectedStatus === 'Đã hủy' }"
+            >
+              Đã hủy
+            </p>
+            <p
+              class="p"
+              (click)="changeStatusFilter('Trả hàng/ Hoàn tiền')"
+              [ngClass]="{ selected: selectedStatus === 'Trả hàng/ Hoàn tiền' }"
+            >
+              Trả hàng/ Hoàn tiền
+            </p>
+          </div>
+          <div class="donhang_item">
+            <div class="donhang_itemdetail" *ngFor="let order of Orders">
+              <div class="donhang_itemdetal_row">
+                <h5 class="don_item_label">Đơn hàng {{ order.ordernumber }}</h5>
+                <p id="status">{{ order.order_status }}</p>
+              </div>
+              <div
+                class="donhang_itemdetal_row"
+                *ngIf="order.rejectreason !== ''"
+              >
+                <p>Lý do hủy: {{ order.rejectreason }}</p>
+              </div>
+              <div
+                *ngFor="let product of order.products"
+                class="donhang_itemdetal_row"
+              >
+                <img [src]="product.img1" />
+                <p class="don_item_label">
+                  {{ product.name }} <br />
+                  x{{ product.quantity }}
+                </p>
+                <p id="total">{{ product.productValue }}.000</p>
+              </div>
+              <hr />
+              <div class="donhang_itemdetal_row">
+                <button
+                  *ngIf="order.order_status === 'Chờ xử lí'"
+                  class="button p"
+                  type="button"
+                  (click)="openCancelPopup()"
+                >
+                  Hủy đơn
+                </button>
+                <div class="popup" *ngIf="showCancelPopup">
+                  <p class="p">Bạn có chắc chắn hủy đơn hàng?</p>
+                  <button class="p" (click)="closePopup()">Đóng</button>
+                  <button class="p" (click)="confirmCancel(order)">
+                    Xác nhận
+                  </button>
+                </div>
+
+                <button
+                  *ngIf="order.order_status !== 'Chờ xử lí'"
+                  class="button p"
+                  type="button"
+                  routerLink="/cart"
+                  routerLinkActive="active"
+                >
+                  Mua lại
+                </button>
+                <p class="p" id="totalpayment">
+                  Tổng thanh toán: {{ order.totalAmount }}.000
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

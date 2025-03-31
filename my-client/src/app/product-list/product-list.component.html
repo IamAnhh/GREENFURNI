@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="main">
+    <div class="firstinfo">
+        <h3 class="bigtitle">SẢN PHẨM</h3>
+        <p>
+            GreenFurni, công ty nội thất từ vật liệu tái chế, mang sứ mệnh kết nối vẻ đẹp với trách nhiệm môi trường. Sản phẩm thủ công từ xưởng tại TP.HCM vừa bền bỉ, tinh tế, vừa kể câu chuyện sáng tạo bền vững, góp phần làm đẹp không gian sống và bảo vệ hành tinh
+            xanh.
+        </p>
+    </div>
+    <br>
+    <div class="flexboxcontainer">
+        <div class="leftcolumn">
+            <h3 class="filtertitle">Bộ lọc &emsp;</h3>
+            <span class="note" (click)="resetFilters()">Xóa bộ lọc</span>
+
+
+            <p class="selecttitle">Loại sản phẩm</p>
+            <input type="radio" name="cate-opt" value="table" id="cate-opt1" [(ngModel)]="selectedCategory" (change)="onCheckboxChange('category', 'table')"> Bàn
+            <br>
+            <input type="radio" name="cate-opt" value="chair" id="cate-opt2" [(ngModel)]="selectedCategory" (change)="onCheckboxChange('category', 'chair')"> Ghế
+            <br>
+            <input type="radio" name="cate-opt" value="set" id="cate-opt3" [(ngModel)]="selectedCategory" (change)="onCheckboxChange('category', 'set')"> Bộ bàn ghế
+            <br><br>
+
+            <p class="selecttitle">Giá sản phẩm</p>
+            <input type="radio" name="price-opt" value="100-den-300" id="price-opt1" [(ngModel)]="selectedPriceRange" (change)="onCheckboxChange('price', '100-den-300')"> Từ 100.000đ đến 300.000đ
+            <br>
+            <input type="radio" name="price-opt" value="300-den-500" id="price-opt2" [(ngModel)]="selectedPriceRange" (change)="onCheckboxChange('price', '300-den-500')"> Từ 300.000đ đến 500.000đ
+            <br>
+            <input type="radio" name="price-opt" value="tren-500" id="price-opt3" [(ngModel)]="selectedPriceRange" (change)="onCheckboxChange('price', 'tren-500')"> Trên 500.000
+        </div>
+
+        <div class="rightcolumn">
+            <div class="product-show" *ngFor="let p of product" [routerLink]="['/product/', p._id]">
+                <img [src]="p.img[0].img1">
+                <p class="name">{{p.name}}</p>
+                <div class="pricecontainer">
+                    <p class="price">{{p.price}}.000đ</p>
+                    <p class="oldprice">{{p.oldprice}}.000đ</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="customize">
+    <h3>Bạn muốn tùy chỉnh sản phẩm?</h3>
+    <p>Liên hệ ngay với GreenFurni nào!</p>
+    <button type="button" class="custom-contact" routerLink="/customproduct" routerLinkActive="active">GỬI YÊU CẦU</button>
+</div>
+<app-footer></app-footer>

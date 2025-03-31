@@ -1,0 +1,25 @@
+<body>
+    <header class="header">
+        <img routerLink="/login" src="https://cdn.builder.io/api/v1/image/assets/9a41a64b9b654c8b8e55e1e605f3b81b/05a2c15420f0ee6c3e764413d153c8b69b3c1ef27b88001c0d51476afe297a0b?apiKey=9a41a64b9b654c8b8e55e1e605f3b81b&" alt="GreenFurni Logo" class="logo" routerLink="/home-page">
+        <h1 class="company-name">Xác thực mật khẩu</h1>
+    </header>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Nhập mã xác nhận</h2>
+            <p class="instruction">Mã xác thực đã được gửi đến</p>
+            <div class="code-inputs">
+                <input type="text" maxlength="1" [(ngModel)]="otp1" [value]="" id="OTP1">
+                <input type="text" maxlength="1" [(ngModel)]="otp2" [value]="" id="OTP2">
+                <input type="text" maxlength="1" [(ngModel)]="otp3" [value]="" id="OTP3">
+                <input type="text" maxlength="1" [(ngModel)]="otp4" [value]="" id="OTP4">
+                <input type="text" maxlength="1" [(ngModel)]="otp5" [value]="" id="OTP5">
+            </div>
+            <p class="resend-text">
+                Bạn vẫn chưa nhận được?
+                <br/>
+                <a href="javascript:void(0)" (click)="resend()" class="resend-link">Gửi lại</a>
+            </p>
+            <button class="confirm-button  btn" (click)="onSubmit()"><a>Tiếp Theo</a></button>
+        </div>
+    </div>
+</body>

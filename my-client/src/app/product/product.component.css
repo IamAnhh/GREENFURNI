@@ -1,0 +1,290 @@
+div {
+    font-family: Literata;
+}
+
+.main {
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.productcontainer {
+    display: flex;
+}
+
+.leftcolumn {
+    width: 50%;
+}
+
+.rightcolumn {
+    width: 50%
+}
+
+.name {
+    color: #4C704D;
+    white-space: nowrap;
+    /* Giữ văn bản trên một dòng */
+    overflow: hidden;
+    /* Ẩn phần vượt ra khỏi chiều rộng */
+    text-overflow: ellipsis;
+    /* Thêm dấu ba chấm (...) */
+}
+
+.name1 {
+    color: #4C704D;
+}
+
+.oldprice {
+    color: grey;
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+button {
+    border: 1px solid #4C704D;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    margin: 5px;
+    padding: 10px;
+}
+
+button:hover {
+    border: 1px solid #4C704D;
+    border-radius: 10px;
+    background-color: #4C704D;
+    color: white;
+    font-weight: bold;
+}
+
+input {
+    border: 1px solid #4C704D;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+}
+
+.grey {
+    color: grey;
+    margin-bottom: 10px;
+}
+
+.rate {
+    display: flex;
+}
+
+.leftcontent {
+    width: 30%
+}
+
+.rightcontent {
+    width: 70%
+}
+
+.ratecontent {
+    display: flex;
+}
+
+.imgfb {
+    width: 5%;
+    height: fit-content;
+    margin-right: 10px;
+}
+
+.fbcontent {
+    width: 95%;
+}
+
+h2 {
+    color: #4C704D;
+}
+
+img {
+    width: 75%;
+    height: 60%;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.smallimg {
+    width: 15%;
+    height: 10%;
+}
+
+.cta {
+    border: 1px solid #4C704D;
+    border-radius: 10px;
+    background-color: #4C704D;
+    color: white;
+    font-weight: bold;
+    width: 20vw;
+}
+
+.ti-star {
+    /* color: #ffc107; */
+    /* fill: yellow; */
+    /* background-color: yellow; */
+    display: inline-block;
+    font-size: 30px;
+}
+
+.inline-qna {
+    display: inline-block;
+}
+
+.star-container i {
+    font-size: 1.5rem;
+    /* Điều chỉnh kích thước */
+    margin-right: 4px;
+    /* Khoảng cách giữa các ngôi sao */
+}
+
+.ask {
+    border: 1px solid #ffc107;
+    border-radius: 10px;
+    background-color: #ffc107;
+    color: white;
+    padding: 5px;
+}
+
+.answer {
+    border: 1px solid #4C704D;
+    border-radius: 10px;
+    background-color: #4C704D;
+    color: white;
+    padding: 5px;
+}
+
+.fbrate {
+    font-style: italic;
+    font-size: 13px;
+}
+
+.divide_answer {
+    display: flex;
+}
+
+.input-ask {
+    width: 50vw;
+}
+
+.input-name {
+    width: 30vw;
+}
+
+.product-show {
+    border: 1px solid var(--color-blue);
+    background-color: var(--color-lightblue);
+    border-radius: 10px;
+    width: 28%;
+    max-width: 250px;
+    display: inline-block;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-show:hover {
+    transform: translateY(-5px);
+}
+
+.product-show img {
+    width: 100%;
+    height: 250px;
+    border: 2px solid var(--color-blue);
+    border-radius: 10px;
+    margin: 0;
+}
+
+.product-show>p {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.product-show>.name {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--color-blue);
+    margin-bottom: 0;
+}
+
+.pricecontainer {
+    padding: 0 20px;
+}
+
+.oldprice {
+    color: gray;
+    font-size: 13px;
+    text-decoration: line-through;
+    display: inline;
+    font-style: italic;
+    text-align: right;
+}
+
+.product-show>.pricecontainer>.price {
+    display: inline-block;
+    width: 50%;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.product-show>.pricecontainer>.oldprice {
+    display: inline-block;
+    width: 50%;
+}
+
+@media screen and (max-width:768px) {
+    .productcontainer {
+        display: block;
+        width: 80vw;
+    }
+    .leftcolumn {
+        width: 80vw;
+    }
+    .rightcolumn {
+        width: 80vw;
+    }
+    .divide_answer {
+        display: flex;
+    }
+}
+
+
+/* Mobile */
+
+@media screen and (max-width:480px) {
+    .cta {
+        width: 30vw;
+    }
+    .rate {
+        display: block;
+    }
+    .leftcontent {
+        width: 80vw;
+    }
+    .rightcontent {
+        width: 80vw;
+    }
+    .divide_answer {
+        display: flex;
+    }
+    .answer-icon {
+        margin-right: 10px;
+    }
+    .product-show {
+        width: 40%;
+        padding: 0;
+    }
+    .pricecontainer {
+        padding: 0 10px;
+        margin: 0 auto;
+    }
+    .product-show>.pricecontainer>.price {
+        display: block;
+    }
+}

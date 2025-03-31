@@ -1,0 +1,42 @@
+<body>
+    <header class="header">
+        <img routerLink="/login" src="https://cdn.builder.io/api/v1/image/assets/9a41a64b9b654c8b8e55e1e605f3b81b/05a2c15420f0ee6c3e764413d153c8b69b3c1ef27b88001c0d51476afe297a0b?apiKey=9a41a64b9b654c8b8e55e1e605f3b81b&" alt="GreenFurni Logo" class="logo" routerLink="/home-page">
+        <h1 class="company-name">Đăng ký</h1>
+    </header>
+    <div class="register-container">
+        <div class="register-box">
+            <h2>Đăng ký</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" id="form-input" placeholder="Họ và tên" name="name" [(ngModel)]="account.Name" #name="ngModel" required>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="text" id="form-input" placeholder="Email" name="email" [(ngModel)]="account.Mail" #name="ngModel" (blur)="checkMail()">
+                    <div class="error" *ngIf="!isValidEmail">Email không hợp lệ!</div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="text" id="form-input" placeholder="Số điện thoại" name="phonenumber" [(ngModel)]="account.phonenumber" #name="ngModel" (blur)="checkPhoneNumber()" required>
+                    <div *ngIf="!isPhoneNumberValid" class="error">Số điện thoại không hợp lệ!</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="form-input" placeholder="Mật khẩu" name="psw" [(ngModel)]="account.password" #name="ngModel" (blur)="checkPassword()" #passwordInputrequired>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Xác nhận mật khẩu" />
+                </div>
+                <!-- <div class="register-button btn">
+                    <input type="submit" value="Đăng Ký" id="submit-sign" class="register-button btn" name="btn-sigup" (click)="postAccount()">
+                </div> -->
+                <button type="submit" class="register-button btn" id="submit-sign" name="btn-sigup" (click)="postAccount()"><a >Đăng Ký</a></button>
+
+                <div class="register-text">
+                    Bạn đã có tài khoản? <a href="javascript:void(0)" class="p" (click)="navigateToLogin()">Đăng nhập</a>
+                </div>
+            </form>
+            <!-- <p class="register-text">
+                Bạn đã có tài khoản <a routerLink="/login" class="register-link"><strong>Đăng nhập</strong></a> </p> -->
+        </div>
+    </div>
+</body>
